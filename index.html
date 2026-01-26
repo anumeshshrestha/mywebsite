@@ -101,7 +101,7 @@
 
 <section id="contact" class="contact">
     <h2>Contact Me</h2>
-    <form id="contact-form">
+<form id="contact-form">
   <input type="text" name="name" placeholder="Your Name" required>
   <input type="email" name="email" placeholder="Your Email" required>
   <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
@@ -110,20 +110,22 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@formspree/js/dist/formspree.min.js"></script>
 <script>
-const form = document.getElementById("contact-form");
-const formspree = new Formspree.Form(form, "xwvolrdp");
+  const form = document.getElementById("contact-form");
+  const formspree = new Formspree.Form(form, "xwvolrdp"); // replace with your Formspree ID
 
-form.addEventListener("submit", async function(event) {
-    event.preventDefault(); // prevent default submission
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault(); // prevent default form submission
     const result = await formspree.submit();
+
     if(result.ok){
-        // Redirect to your custom Thank You page
-        window.location.href = "thankyou.html";
+      // Redirect to your own thank-you page
+      window.location.href = "thankyou.html";
     } else {
-        alert("Oops! Something went wrong. Please try again.");
+      alert("Oops! Something went wrong. Please try again.");
     }
-});
+  });
 </script>
+
 
 
 </section>
