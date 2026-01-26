@@ -108,31 +108,28 @@
   <button type="submit">Send Message</button>
 </form>
 
-<script src="https://cdn.jsdelivr.net/npm/@formspree/js/dist/formspree.min.js"></script>
-<script>
-  const form = document.getElementById("contact-form");
-  const formspree = new Formspree.Form(form, "xwvolrdp"); // replace with your Formspree ID
-
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault(); // prevent default form submission
-    const result = await formspree.submit();
-
-    if(result.ok){
-      // Redirect to your own thank-you page
-      window.location.href = "thankyou.html";
-    } else {
-      alert("Oops! Something went wrong. Please try again.");
-    }
-  });
-</script>
-
-
 
 </section>
 
 <footer>
     &copy; 2026 Anumesh Shrestha. All rights reserved.
 </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@formspree/js/dist/formspree.min.js"></script>
+<script>
+const form = document.getElementById("contact-form");
+const formspree = new Formspree.Form(form, "xwvolrdp"); // replace with your Formspree ID
+
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const result = await formspree.submit();
+    if(result.ok){
+        window.location.href = "thankyou.html"; // Your custom page
+    } else {
+        alert("Oops! Something went wrong. Please try again.");
+    }
+});
+</script>
 
 
 </body>
