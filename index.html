@@ -116,43 +116,44 @@
 <script src="https://cdn.jsdelivr.net/npm/@formspree/js/dist/formspree.min.js"></script>
 <script>
 const form = document.getElementById("contact-form");
-const formspree = new Formspree.Form(form, "xwvolrdp"); // replace with your Formspree ID
+const formspree = new Formspree.Form(form, "xwvolrdp"); // Replace with your Formspree ID
 
-// Fill form fields from URL parameters
+// Read URL parameters
 const params = new URLSearchParams(window.location.search);
 const name = params.get('name');
 const email = params.get('email');
 const message = params.get('message');
 
+// Fill form fields
 if(name) form.elements['name'].value = name;
 if(email) form.elements['email'].value = email;
 if(message) form.elements['message'].value = message;
 
-// Auto-submit if all fields are filled from URL
+// Auto-submit if all fields exist
 if(name && email && message){
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const result = await formspree.submit();
     if(result.ok){
-      window.location.href = "thankyou.html"; // redirect to your page
+      window.location.href = "thankyou.html"; // Redirect to your custom page
     } else {
       alert("Message not sent. Try again.");
     }
   });
-  // Trigger submit programmatically
+  // Trigger submission
   form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
-} else {
-  // Normal manual submission
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const result = await formspree.submit();
-    if(result.ok){
-      window.location.href = "thankyou.html";
-    } else {
-      alert("Message not sent. Try again.");
-    }
-  });
 }
+
+// Otherwise normal manual submission
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const result = await formspree.submit();
+  if(result.ok){
+    window.location.href = "thankyou.html";
+  } else {
+    alert("Message not sent. Try again.");
+  }
+});
 </script>
 
 </body>
